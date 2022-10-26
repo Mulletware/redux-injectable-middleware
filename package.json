@@ -1,0 +1,13 @@
+{
+  "name": "redux-injectable-middleware",
+  "version": "1.0.0",
+  "description": "Middleware that allows asynchronous injection of other middlewares",
+  "main": "src/index.js",
+  "repository": "git@github.com:Mulletware/redux-injectable-middleware.git",
+  "author": "Dustin Schultz <dustindschultz@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "redux": "^4.2.0"
+  }
+}
