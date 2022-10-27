@@ -1,6 +1,6 @@
 {
   "name": "redux-injectable-middleware",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Middleware that allows asynchronous injection of other middlewares",
   "main": "src/index.js",
   "repository": "https://github.com/Mulletware/redux-injectable-middleware",
