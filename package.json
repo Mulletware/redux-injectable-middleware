@@ -2,13 +2,19 @@
   "name": "redux-injectable-middleware",
   "version": "1.0.4",
   "description": "Middleware that allows asynchronous injection of other middlewares",
-  "main": "src/index.js",
+  "main": "dist/index.js",
+  "module": "src/index.js",
   "repository": "https://github.com/Mulletware/redux-injectable-middleware",
   "author": "Dustin Schultz <dustindschultz@gmail.com>",
   "license": "MIT",
   "private": false,
+  "scripts": {
+    "build": "rimraf dist && mkdirp dist && webpack --mode production"
+  },
   "dependencies": {
-    "redux": "^4.2.0"
+    "mkdirp": "^1.0.4",
+    "redux": "^4.2.0",
+    "rimraf": "^3.0.2"
   },
   "devDependencies": {
     "webpack": "^5.74.0",
