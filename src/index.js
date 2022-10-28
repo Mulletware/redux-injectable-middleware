@@ -1,10 +1,6 @@
 import { compose } from "redux";
 
-export const injectMiddleware = (middleware) => {
-  middlewareApi.onAddMiddleware(middleware);
-};
-
-let middlewareApi = {
+const callbackObj = {
   onAddMiddleware: () => {
     throw Error(
       "You can't inject middleware until after the store has been initialized."
@@ -12,12 +8,16 @@ let middlewareApi = {
   },
 };
 
+export const injectMiddleware = (middleware) => {
+  callbackObj.onAddMiddleware(middleware);
+};
+
 export const injectableMiddleware = (store) => (_next) => {
   let next = _next;
 
-  middlewareApi.onAddMiddleware = (ware) => {
+  callbackObj.onAddMiddleware = (middleware) => {
     const currentNextFn = next;
-    next = compose(ware(store))(currentNextFn); // wrap the previous `next` function with this new one, a la redux
+    next = compose(middleware(store))(currentNextFn); // wrap the previous `next` function with this new one, a la redux
   };
 
   return (action) => next(action);
