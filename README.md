@@ -16,7 +16,7 @@ or
 
 First you'll need to register the middleware with redux when it's first initialized on startup. This is a requirement.
 
-```
+```js
 // app/store.js
 import { injectableMiddleware } from "redux-injectable-middleware";
 
@@ -35,7 +35,7 @@ import { injectableMiddleware } from "redux-injectable-middleware";
 
 Next, just pass your middleware to the `injectMiddleware` function and it will be sideloaded into the redux dispatch chain.
 
-```
+```js
 // api/user.js
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { injectMiddleware } from "redux-injectable-middleware";
