@@ -1,23 +1,46 @@
 {
   "name": "redux-injectable-middleware",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "Middleware that allows asynchronous injection of other middlewares",
   "main": "dist/index.js",
-  "module": "src/index.js",
+  "module": "dist/index.mjs",
+  "types": "types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./dist/index.js": "./dist/index.js",
+    "./dist/index.mjs": "./dist/index.mjs",
+    "./src/index.js": "./src/index.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "src",
+    "types"
+  ],
+  "sideEffects": false,
   "repository": "https://github.com/Mulletware/redux-injectable-middleware",
   "author": "Dustin Schultz <dustindschultz@gmail.com>",
   "license": "MIT",
   "private": false,
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
-    "build": "rimraf dist && mkdirp dist && webpack --mode production"
+    "build": "rm -rf dist && rollup -c",
+    "pretest": "npm run build",
+    "test": "node --test",
+    "test:types": "tsc -p tsconfig.types.json"
   },
   "dependencies": {
-    "mkdirp": "^1.0.4",
-    "redux": "^4.2.0",
-    "rimraf": "^3.0.2"
+    "redux": "^4.2.0 || ^5.0.0"
   },
   "devDependencies": {
-    "webpack": "^5.74.0",
-    "webpack-cli": "^4.10.0"
+    "rollup": "^4.9.0",
+    "typescript": "^5.3.0"
   }
 }

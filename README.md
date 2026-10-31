@@ -22,7 +22,7 @@ import { injectableMiddleware } from "redux-injectable-middleware";
 
 // using standard redux: 
   ...
-  middleware: applyMiddleware([injectableMiddleware]),
+  middleware: applyMiddleware(injectableMiddleware),
   ...
 
 // using redux toolkit:
@@ -48,6 +48,34 @@ export const userApi = createApi({
 injectMiddleware(api.middleware);
 ...
 ```
+
+## Module format & TypeScript
+
+Since 1.1.0 the package ships real ESM (`dist/index.mjs`) alongside
+CommonJS (`dist/index.js`) behind a Node `exports` map, plus TypeScript
+types. Named imports work natively in both ESM and CJS — no bundler interop
+required:
+
+```js
+import { injectMiddleware, injectableMiddleware } from "redux-injectable-middleware";
+```
+
+A default export mirroring the named exports is also provided, so
+default-import interop (`import rIM from "redux-injectable-middleware"`)
+works identically against either build.
+
+## Development
+
+```bash
+npm install
+npm test        # builds dist/ first, then runs the full suite
+npm run build   # dist/index.js (CJS) + dist/index.mjs (ESM)
+npm run test:types
+```
+
+The test suite pins the packaging contract (native ESM named imports,
+cjs-module-lexer detection of the CJS build, `npm pack` contents) — if you
+change the build, keep those green.
 
 ## Contributing
 
