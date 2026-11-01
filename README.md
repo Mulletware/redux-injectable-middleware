@@ -77,6 +77,15 @@ The test suite pins the packaging contract (native ESM named imports,
 cjs-module-lexer detection of the CJS build, `npm pack` contents) — if you
 change the build, keep those green.
 
+## Releasing
+
+Releases are automated: [semantic-release](https://github.com/semantic-release/semantic-release)
+runs in GitHub Actions on every push to `main`. Use [conventional commit
+messages](https://www.conventionalcommits.org) (`fix:`, `feat:`,
+`feat!:`/`BREAKING CHANGE:`) — the version bump, changelog, git tag, GitHub
+release, and npm publish all happen from CI. Do not `npm publish` manually
+and do not hand-bump `version` in package.json.
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
